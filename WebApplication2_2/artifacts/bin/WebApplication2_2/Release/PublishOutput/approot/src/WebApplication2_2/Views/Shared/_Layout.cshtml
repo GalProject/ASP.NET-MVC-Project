@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/11.css" type="text/css" media="screen" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+</head>
+<body>
+    <header>
+        <div class="hover14 column">
+            <figure><img src="~/images/logo.png" /></figure>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li class="selected"></li>
+            <li style="padding-left: 380px; padding-right:50px;margin-left:135px" width="15px"><a asp-controller="Blog" asp-action="Index"><div class="showcase-menu-social"><img style="margin-left:40px" src="~/images/Icons/blog.png" alt="icon1" /></div></a></li>
+
+            <li style="padding-right:50px"><a asp-controller="Blog" asp-action="About"><div class="showcase-menu-social"><img style="margin-left:20px" img src="~/images/Icons/about2.png" alt="icon1" /></div></a></li>
+
+            <li style="padding-right:50px"><a asp-controller="HallOfFames" asp-action="Index"><div class="showcase-menu-social"><img style="margin-left:20px" img src="~/images/Icons/members1.png" alt="icon1" /></div></a></li>
+
+            <li style="padding-right:50px"><a asp-controller="Game" asp-action="Index"><div class="showcase-menu-social"><img style="margin-left:20px" img src="~/images/Icons/game.png" alt="icon1" /></div></a></li>
+
+        </ul>
+    </nav>
+
+
+    <!-- Main Banner -->
+
+    <div>
+        <section style="height:400px; padding-top:40px">
+            <div style="width:850px; height:80px; padding-top:100px">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <style>
+                        .carousel-inner > .item > img,
+                        .carousel-inner > .item > a > img {
+                            width: 100%;
+                            margin: auto;
+                            -webkit-border-radius: 22px;
+                            position: relative;
+                        }
+                    </style>
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="~/images/Banner05.png" alt="Chania">
+                        </div>
+
+                        <div class="item">
+                            <img src="~/images/Banner02.png" alt="Chania">
+                        </div>
+
+                        <div class="item">
+                            <img src="~/images/Banner03.png" alt="Flower" >
+                        </div>
+
+                        <div class="item">
+                            <img src="~/images/Banner04.png" alt="Flower">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="background-image:none">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="background-image:none">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+
+
+
+    <!-- Contect And Main Contect -->
+    <div id="content">
+        <div id="mainContent">
+            @RenderBody()
+
+            <!--div of main contect-->
+        </div>
+
+
+
+        <!--aside-->
+        <aside>
+            <section style="width:250px">
+                <header>
+                    <h3><img width="13" src="~/images/Icons/flame.png" /> Top 5 Online Games <img width="13" src="~/images/Icons/flame.png" /></h3>
+                </header>
+                <ul>
+                    <li><a href="http://games.nana10.co.il/Article/?ArticleID=1092571" target="_blank">1) Bubbles</a></li>
+                    <li><a href="http://www.miniclip.com/games/stealth-sniper-2/en/#t-w-c-H" target="_blank">2) Sniper2</a></li>
+                    <li><a href="http://www.miniclip.com/games/supercar-showdown/en/#t-w-c-H" target="_blank">3) SuperCar</a></li>
+                    <li><a href="http://www.miniclip.com/games/basketball-stars/en/" target="_blank">4) Basketball Stars</a></li>
+                    <li><a href="http://www.miniclip.com/games/soccer-stars-mobile/en/" target="_blank">5) Football Stars</a></li>
+                </ul>
+            </section>
+
+            <!--Facebook API-->
+            <section>
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTheBestVideoGames%2F&tabs=timeline&width=220&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="220" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+             </section>
+
+            <!---Twitter Section-->
+            <section>
+                <a class="twitter-timeline" href="https://twitter.com/gal_ev/lists/games" data-widget-id="735124054705901569">Tweets from https://twitter.com/gal_ev/lists/games</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </section>
+
+        </aside>
+        <!--div of contect-->
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <section id="about">
+                <h3>About</h3>
+                <p>This blog & shop created for gamers worlwide,
+                The games are for PC,Xbox One,PS4 & more</p>
+            </section>
+            <section>
+                    <h3>Developers</h3>
+                <ul>
+                    <li><a href="mailto:galevgi@gmail.com">Gal Ben Evgi</a></li>
+                    <li><a href="mailto:galevgi@gmail.com">Noam Hazaz</a></li>
+                    <li><a href="mailto:galevgi@gmail.com">Gal Malca</a></li>
+                </ul>
+            </section>
+            <section id="blogroll" style="padding-right:50px">
+                <h3>Admin</h3>
+                <ul>
+                    @await Html.PartialAsync("_LoginPartial")
+                </ul>
+            </section>
+
+        </div>
+    </footer>
+
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

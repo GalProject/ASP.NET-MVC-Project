@@ -1,0 +1,40 @@
+@model WebApplication2_2.Models.Store
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Store</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LatitudeOfStore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LatitudeOfStore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LongitudeOfStore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LongitudeOfStore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfStore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfStore)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

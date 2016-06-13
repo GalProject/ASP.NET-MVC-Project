@@ -1,0 +1,460 @@
+﻿
+@model IEnumerable<object>
+@{
+    List<WebApplication2_2.Models.Post> listOne = Model.ToList()[0] as List<WebApplication2_2.Models.Post>;
+    List<WebApplication2_2.Models.Game> listTwo = Model.ToList()[1] as List<WebApplication2_2.Models.Game>;
+    List<WebApplication2_2.Models.HallOfFame> listThree = Model.ToList()[2] as List<WebApplication2_2.Models.HallOfFame>;
+    List<WebApplication2_2.Models.Store> listFour = Model.ToList()[3] as List<WebApplication2_2.Models.Store>;
+
+    //linQ GroupBy
+    var regi =
+    from a in listThree
+    group a by a.Country into g
+    select new { Country = g.Key, Pepole = g.Count() };
+
+    //Num Of Games
+    Decimal maxValueGame = 0;
+    Decimal numOfGame = 0;
+
+    if (listTwo.Count() != 0)
+    {
+        //Max Price
+        maxValueGame = listTwo.Max(x => x.GamePrice);
+        //Num Of Games
+        numOfGame = listTwo.Count();
+
+    }
+
+    //LinQ Join
+    var writer =
+    (from i in listOne
+     join o in listThree on i.PostWriterName equals o.Name
+     select new { i.PostWriterName, o.NumOfYearsInClub, o.BirthDate, i.PostTitle }).Distinct();
+
+
+}
+
+
+<!-- Contect And Main Contect -->
+<div id="content">
+    <div id="mainContent">
+
+        <!--Welciome Canvas-->
+        <section style="width:240px; margin-left:160px; margin-top:30px">
+            <canvas id="myCanvas" width="240" height="150" style="border:1px solid #d3d3d3;">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+
+            <script>
+
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+
+                ctx.font = "20px Georgia";
+                ctx.fillText("          Welcome To", 10, 50);
+                ctx.fillText("  The Best Video Games", 10, 80);
+
+                ctx.font = "30px Verdana";
+                // Create gradient
+                var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+                gradient.addColorStop("0", "magenta");
+                gradient.addColorStop("0.5", "blue");
+                gradient.addColorStop("1.0", "red");
+                // Fill with gradient
+                ctx.fillStyle = gradient;
+                ctx.fillText("Manage Panel", 10, 120);
+
+            </script>
+        </section>
+
+
+
+
+        <!--Post-->
+        <h2>Posts</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => listOne[0].ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listOne[0].PostTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listOne[0].PostWriterName)
+                </th>
+                <th>
+            </tr>
+
+
+@foreach (var item in listOne)
+{
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostWriterName)
+                    </td>
+                    <td>
+                        <a asp-controller="ManageBlog" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-controller="ManageBlog" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-controller="ManageBlog" asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
+                        <a asp-controller="ManageBlog" asp-action="ManageComments" asp-route-id="@item.ID">Manage Comments</a>
+                    </td>
+                </tr>
+
+}
+
+        </table>
+        <!--ADDED NEW POST-->
+
+        <p>
+            <a asp-controller="ManageBlog" asp-action="Create">
+                <button type="button" class="btn btn-primary">Add New Post</button>
+            </a>
+        </p>
+
+
+        <!--Games-->
+        <h2>Games</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => listTwo[0].ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listTwo[0].GameName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listTwo[0].GameDevelopers)
+                </th>
+                <th>
+            </tr>
+
+
+@foreach (var item in listTwo)
+{
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameDevelopers)
+                    </td>
+                    <td>
+                        <a asp-controller="Game" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-controller="Game" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-controller="Game" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+}
+        </table>
+
+        <!--ADDED NEW Game-->
+
+        <p>
+            <a asp-controller="Game" asp-action="Create">
+                <button type="button" class="btn btn-primary">Add New Game</button>
+            </a>
+        </p>
+
+
+
+
+        <!--Hall of Fame -->
+
+        <h2>Hall of Fame </h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => listThree[0].ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listThree[0].Name)
+                </th>
+                <th>
+            </tr>
+
+
+            @foreach (var item in listThree)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-controller="HallOfFames" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-controller="HallOfFames" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-controller="HallOfFames" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <!--ADDED NEW Hall of Fame-->
+        <p>
+            <a asp-controller="HallOfFames" asp-action="Create">
+                <button type="button" class="btn btn-primary">Add New Member</button>
+            </a>
+                </p>
+
+
+
+        <!--Stores-->
+        <h2>Stores</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => listFour[0].ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listFour[0].NameOfStore)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listFour[0].LatitudeOfStore)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => listFour[0].LongitudeOfStore)
+                </th>
+                <th>
+            </tr>
+
+
+            @foreach (var item in listFour)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameOfStore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LatitudeOfStore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LongitudeOfStore)
+                    </td>
+                    <td>
+                        <a asp-controller="Stores" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-controller="Stores" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-controller="Stores" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>D
+                </tr>
+
+            }
+
+        </table>
+        <!--ADDED NEW Store-->
+        <p>
+            <a asp-controller="Stores" asp-action="Create">
+                <button asp-controller="Stores" asp-action="Create" type="button" class="btn btn-primary">Add New Store</button>
+            </a>
+        </p>
+
+
+
+
+        <!--Some Statics for the Admin..-->
+        <h2 style="text-shadow: 1px 1px #27ea09;">Some Statics for the Admin..</h2>
+
+
+
+        <!--Registerd Users Worlwide-->
+        <h2>Hall of Fame Worldwide</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                   Country
+                </th>
+                <th>
+                   Number Pepole
+                </th>
+            </tr>
+
+
+            @foreach (var item in regi.ToList())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pepole)
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+
+        <!--Hall of fame With Posts-->
+        <h2>Hall of Fame With Posts</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    Member Name
+                </th>
+                <th>
+                    Post Name
+                </th>
+                <th>
+                    Years In Club
+                </th>
+                <th>
+                    BirthDate (to give gift)
+                </th>
+            </tr>
+
+
+            @foreach (var item in writer.ToList())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostWriterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumOfYearsInClub)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+
+
+
+
+        <!--Diagram Of Number Of Games and Higher price-->
+
+        <h2>Number Of Games and Maximum Price Game</h2>
+    
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Play:700,400' type='text/css'>
+
+        <script type="text/javascript" src="http://iop.io/js/vendor/d3.v3.min.js"></script>
+        <script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerEvents/pointerevents.js"></script>
+        <script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerGestures/pointergestures.js"></script>
+        <script type="text/javascript" src="http://iop.io/js/iopctrl.js"></script>
+
+        <style>
+            body {
+                font: 16px arial;
+                background: #f0f0f0;
+            }
+
+            .unselectable {
+                -moz-user-select: -moz-none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            /* css formats for the gauge */
+            .gauge .domain {
+                stroke-width: 2px;
+                stroke: #000;
+            }
+
+            .gauge .tick line {
+                stroke: #000;
+                stroke-width: 2px;
+            }
+
+            .gauge line {
+                stroke: #1e1c1c;
+            }
+
+            .gauge .arc, .gauge .cursor {
+                opacity: 0;
+            }
+
+            .gauge .major {
+                fill: #6d6969;
+                font-size: 20px;
+                font-family: 'Play', verdana, sans-serif;
+                font-weight: normal;
+            }
+
+            .gauge .indicator {
+                stroke: #EE3311;
+                fill: #000;
+                stroke-width: 4px;
+            }
+
+            /* css formats for the segment display */
+            .segdisplay .on {
+                fill: #007aff;
+            }
+
+            .segdisplay .off {
+                fill: #0063ff;
+                opacity: 0.15;
+            }
+        </style>
+        <div>
+            <span id="speedometer"></span>
+        </div>
+
+        <script>
+        var svg = d3.select("#speedometer")
+                .append("svg:svg")
+                .attr("width", 400)
+                .attr("height", 400);
+
+
+        var gauge = iopctrl.arcslider()
+                .radius(120)
+                .events(false)
+                .indicator(iopctrl.defaultGaugeIndicator);
+        gauge.axis().orient("in")
+                .normalize(true)
+                .ticks(12)
+                .tickSubdivide(3)
+                .tickSize(10, 8, 10)
+                .tickPadding(5)
+                .scale(d3.scale.linear()
+                        .domain([0, 1000])
+                        .range([-3*Math.PI/4, 3*Math.PI/4]));
+
+        var segDisplay = iopctrl.segdisplay()
+                .width(80)
+                .digitCount(6)
+                .negative(false)
+                .decimals(0);
+
+        svg.append("g")
+                .attr("class", "segdisplay")
+                .attr("transform", "translate(130, 200)")
+                .call(segDisplay);
+
+        svg.append("g")
+                .attr("class", "gauge")
+                .call(gauge);
+
+      
+        segDisplay.value(@numOfGame);
+        gauge.value(@maxValueGame);
+
+        </script>
+        <!--div of main contect-->
+    </div>
+</div>
+
+

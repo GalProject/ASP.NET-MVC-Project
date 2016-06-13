@@ -1,0 +1,24 @@
+﻿@using System.Security.Claims
+
+@if (User.IsSignedIn())
+{
+
+    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right" style="border-top:0px; padding:0px; margin:0px">
+        <a asp-controller="Manage" asp-action="Index" style="padding-right:120px" title="Manage">Hello @User.GetUserName()!</a>
+        @if (User.Identity.Name.Equals("admin@gmail.com")){
+            <a asp-controller="ManageBlog" asp-action="Index"><div class="showcase-menu-social" style="padding-bottom:0px; padding-top:7px;width:50px;margin:0px;"><img style="margin-left:20px; width:30px; margin:0px" img src="~/images/Icons/manage.png" alt="icon1" /></div></a>
+        }
+         <button style="padding:0px;border:0px;" type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+    </form>
+
+
+
+}
+else
+{
+    <div style="margin:0px;padding:0px;width:60px;">
+        <a style="margin:0px;padding:0px" asp-controller="Account" asp-action="Register">Register</a>
+    </div>
+    <a style="margin:0px;padding:0px" asp-controller="Account" asp-action="Login">Log in</a>
+
+}

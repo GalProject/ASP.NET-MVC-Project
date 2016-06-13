@@ -1,0 +1,35 @@
+@model WebApplication2_2.Models.Store
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Store</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LatitudeOfStore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LatitudeOfStore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LongitudeOfStore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LongitudeOfStore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfStore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfStore)
+        </dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

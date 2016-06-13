@@ -1,0 +1,36 @@
+﻿
+@model WebApplication2_2.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.PostTitle)</dt>
+        <dd>@Html.DisplayFor(model => model.PostTitle)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PostDate)</dt>
+        <dd>@Html.DisplayFor(model => model.PostDate)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PostWriterName)</dt>
+        <dd>@Html.DisplayFor(model => model.PostWriterName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PostWriterURL)</dt>
+        <dd>@Html.DisplayFor(model => model.PostWriterURL)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PostContent)</dt>
+        <dd>@Html.DisplayFor(model => model.PostContent)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PostPicture)</dt>
+        <dd><img src="~/images/Posts/@Html.DisplayFor(model => model.PostPicture)" alt="pic" width="150" height="180" /></dd>
+        <dt>@Html.DisplayNameFor(model => model.PostVideo)</dt>
+        <dd><iframe width="250" height="180" src="@Html.DisplayFor(model => model.PostVideo)"></iframe></dd>
+
+
+    </dl>
+</div>
+<p>
+    <a asp-controller="ManageBlog" asp-action="Index">Back to List</a>
+</p> 

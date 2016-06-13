@@ -1,0 +1,114 @@
+﻿@model WebApplication2_2.Models.Game
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Edit a Game</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ID" />
+        <div class="form-group">
+            <label asp-for="GameName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameName" class="form-control" />
+                <span asp-validation-for="GameName" class="temodel.CommentPost.PostTitlext-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GameGenre" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameGenre" type="radio" name="GameGenre" value="Action" id="Action"/>Action<br>
+                <input asp-for="GameGenre" type="radio" name="GameGenre" value="Sports" id="Sports" />Sports<br>
+                <input asp-for="GameGenre" type="radio" name="GameGenre" value="Kids" id="Kids" />Kids<br>
+                <input asp-for="GameGenre" type="radio" name="GameGenre" value="Fantasy" id="Fantasy" />Fantasy<br>
+                <input asp-for="GameGenre" type="radio" name="GameGenre" value="Racing" id="Racing" />Racing<br>
+                <input asp-for="GameGenre" type="radio" name="GameGenre" value="Music" id="Music" />Music
+                <span asp-validation-for="GameGenre" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GamePrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GamePrice" class="form-control" />
+                <span asp-validation-for="GamePrice" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GameDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameDate" class="form-control" />
+                <span asp-validation-for="GameDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PostID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PostID" class="form-control"/>
+                <span asp-validation-for="PostID" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GameDevelopers" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameDevelopers" class="form-control" style="margin-left:15px; margin-top:15px; margin-left:5px"  />
+                <span asp-validation-for="GameDevelopers" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GameAvailability" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameAvailability" type="radio" name="GameAvailability" value="InStock" id="InStock"/>InStock<br>
+                <input asp-for="GameAvailability" type="radio" name="GameAvailability" value="Pre-Order" id="Pre-Order" />Pre-Order
+                <span asp-validation-for="GameAvailability" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Rating" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GameContent" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameContent" class="form-control" />
+                <span asp-validation-for="GameContent" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GamePic" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GamePic" class="form-control" />
+                <span asp-validation-for="GamePic" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GameVideo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameVideo" class="form-control" />
+                <span asp-validation-for="GameVideo" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-controller="ManageBlog" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

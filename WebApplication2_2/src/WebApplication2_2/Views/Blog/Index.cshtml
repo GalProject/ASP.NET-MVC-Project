@@ -1,0 +1,109 @@
+﻿
+@model IEnumerable<object>
+@{
+    List<WebApplication2_2.Models.Post> listOne = Model.ToList()[0] as List<WebApplication2_2.Models.Post>;
+    List<WebApplication2_2.Models.Comment> listTwo = Model.ToList()[1] as List<WebApplication2_2.Models.Comment>;
+    ViewData["Title"] = "Index";
+}
+
+
+<html>
+<body>
+
+    <h2 style="text-align:center">Games Blog</h2>
+
+    <!-- Contect And Main Contect -->
+    <div id="content">
+        <div id="mainContent">  
+
+            <!--Search for blog name-->
+
+            <form asp-controller="Blog" asp-action="Index">
+                <p>
+                    <i class="glyphicon glyphicon-search"></i>
+                    Post Name: <input style="padding:0px" type="text" name="SearchString">
+                    <input style="margin-left:30px" type="submit" value="Search" />
+                </p>
+             </form>
+            
+            
+            
+            @foreach (var item in listOne)
+            {
+
+                <!--POST (from database)-->
+                <div>
+                    <article class="blogPost">
+                        <header>
+                            <h2 style="margin-bottom:0px; padding-bottom:0px">@Html.DisplayFor(model => item.PostTitle)</h2>
+                            <p>
+                                <img style="box-shadow:0px; margin-bottom:10px; margin-top:10px" src="~/images/Icons/circle.png"/>  Posted on <time>@Html.DisplayFor(modelItem => item.PostDate)</time><br> 
+                                <img style="margin:0px" src="~/images/Icons/people.png" />  by <a href="@Html.DisplayFor(modelItem => item.PostWriterURL)">@Html.DisplayFor(modelItem => item.PostWriterName)</a><br> 
+                                <img style="margin:0px; padding-top:11px" src="~/images/Icons/comments.png" />  @Html.DisplayFor(modelItem => item.CommentList.Count) Comments
+                            </p>
+                        </header>
+                        <p>
+                            <img src="~/images/Posts/@item.PostPicture" alt="pic" width="150" height="180" style="vertical-align:0px; margin:0px"/>
+                            <iframe width="250" height="180"
+                                    src="@item.PostVideo"></iframe>
+                        <p>
+                        </p>
+                        <div>
+                            <p>@Html.DisplayFor(modelItem => item.PostContent)</p>
+                            <p></p>
+                        </div>
+                    </article>
+
+
+
+                    <!--Comments (from database)-->
+                    <section id="@Html.DisplayFor(modelItem => item.ID)">
+                        <h3>Comments</h3>
+                        @foreach (var item1 in listTwo.Where(m => m.PostID == item.ID))
+                        {
+                            <div>
+                                <article>
+                                    <header>
+                                        <a href="@Html.DisplayFor(modelItem => item1.CommentWriterURL)">@Html.DisplayFor(modelItem => item1.CommentWriter)</a>
+                                    </header>
+                                    <p>@Html.DisplayFor(modelItem => item1.CommentContent)</p>
+                                </article>
+                            </div>
+                        }
+                    </section>
+
+
+                    <!--POST-->
+                        <form action="/Blog/CreateComment" method="post">
+                            <h3>Post a comment</h3>
+                            <p>
+                                <label for="name">Name</label>
+                                <input name="name" id="name" type="text" required />
+                            </p>
+                            <p>
+                                <label for="title">Title</label>
+                                <input name="title" id="title" type="text" required />
+                            </p>
+                            <p>
+                                <label for="website">Website</label>
+                                <input name="website" id="website" type="url" />
+                            </p>
+                            <p>
+                                <label for="comment">Comment</label>
+                                <textarea name="comment" id="comment" required></textarea>
+                            </p>
+                            <input type="hidden" value="@item.ID" name="postID" />
+                               <p style="margin-left:160px"><button style="padding:0px; height:27px; width:107px" type="submit" class="btn btn-primary" value="Post Comment" />Post Comment</p>
+                        </form>
+                    </div>
+
+            }
+
+            <!--div of main contect-->
+        </div>
+    </div>
+
+
+
+</body>
+</html>

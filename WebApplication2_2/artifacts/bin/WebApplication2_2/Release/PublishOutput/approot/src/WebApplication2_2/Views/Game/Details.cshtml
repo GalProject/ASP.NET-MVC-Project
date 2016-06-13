@@ -1,0 +1,116 @@
+﻿@model IEnumerable<object>
+@{
+    ViewData["Title"] = "Details";
+    Game Game = Model.ToList()[0] as Game;
+    List<WebApplication2_2.Models.Post> listTwo = Model.ToList()[1] as List<WebApplication2_2.Models.Post>;
+    List<WebApplication2_2.Models.Game> AllGames = Model.ToList()[2] as List<WebApplication2_2.Models.Game>;
+
+
+    //LinQ Join
+    var writer =
+    (from i in AllGames
+    join o in listTwo on i.GameName equals o.PostTitle
+    select new { o.PostTitle, o.PostDate, o.PostWriterName, o.PostContent}).Distinct();
+    }
+
+
+
+
+    <h2>Details</h2>
+
+    <div>
+        <hr />
+        <dl class="col-md-pull-7">
+                <dt>
+                   Game Name
+                </dt>
+                <dd>
+                    @Html.DisplayFor(Model => Game.GameName)
+                </dd>
+    <dt>
+        Game Availability
+    </dt>
+    <dd>
+        @Html.DisplayFor(Model => Game.GameAvailability)
+    </dd>
+    <dt>
+       Game Date
+    </dt>
+    <dd>
+        @Html.DisplayFor(Model => Game.GameDate)
+    </dd>
+    <dt>
+       Genre
+    </dt>
+    <dd>
+        @Html.DisplayFor(Model => Game.GameGenre)
+    </dd>
+    <dt>
+       Rating
+    </dt>
+    <dd>
+        @Html.DisplayFor(Model => Game.Rating)
+    </dd>
+    <dt>
+       Developers
+    </dt>
+    <dd>
+        @Html.DisplayFor(Model => Game.GameDevelopers)
+    </dd>
+    <dt>
+       Price
+    </dt>
+    <dd>
+        @Html.DisplayFor(Model => Game.GamePrice)
+    </dd>
+    <dt>
+        Content
+    </dt>
+    <dd>
+        @Html.DisplayFor(Model => Game.GameContent)
+    </dd>
+
+    <dt>@Html.DisplayFor(Model => Game.GamePic)</dt>
+    <dd><img src="~/images/Games/@Html.DisplayFor(Model => Game.GamePic)" alt="pic" width="150" height="180" /></dd>
+    <dt>@Html.DisplayFor(Model => Game.GameVideo)</dt>
+    <dd><iframe width="250" height="180" src="@Html.DisplayFor(Model => Game.GameVideo)"></iframe></dd>
+     </dl>      
+    </div>
+
+       <!--Post (if exist)-->
+<h2>Post On The Game:</h2>
+<dl class="col-md-pull-7">
+@foreach (var item in writer.ToList())
+{
+    if (item.PostTitle.Equals(Game.GameName)) { 
+        <dt>
+            Post Title
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.PostTitle)
+        </dd>
+        <dt>
+            Post Date
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.PostDate)
+        </dd>
+        <dt>
+            Post Writer Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.PostWriterName)
+        </dd>
+         <dt>
+             Post Content
+         </dt>
+         <dd>
+        @Html.DisplayFor(modelItem => item.PostContent)
+        </dd>
+    }
+}
+
+   </dl>
+
+    <a asp-controller="Game" asp-action="Index">Back to List</a>
+

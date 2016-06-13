@@ -1,0 +1,95 @@
+@model IEnumerable<WebApplication2_2.Models.HallOfFame>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <div>
+        <h2 style="text-align:center">Hall of Fame
+        <img src="~/images/hall-of-fame.png" alt="hall" height="120" width="190"></h2>
+    </div>
+
+    <form asp-controller="HallOfFames" asp-action="Index2" method="post">
+        <div class="container" style="width:initial">
+            <div class="row" style="width:auto; margin-bottom:15px">
+                <div class="col-lg-3 col-md-6 col-md-offset-3 col-lg-offset-0">
+                    <div class="well" style="width:260px; height:290px; padding-top:2px; margin-left:120px">
+                        <h3 align="center" style="padding:0px">Search Filter</h3>
+                        <div class="form-group">
+                            <label for="sex" class="control-label" style="padding-right:105px; padding-top:0px;">Sex</label>
+                            <select class="form-control" name="sex" id="sex" style="width:230px">
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="align-content:center">
+                            <label for="Name" class="control-label" style="padding-right:0px; padding-top:0px;">Full Member Name</label>
+                            <input type="text" class="control-label" id="Name" aria-describedby="basic-addon1" name="Name" style="width:230px">
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group" style="align-content:center">
+                                <label for="year" class="form-group" style="padding-right:40px; padding-top:0px; width:140px">Years In Club</label>
+                                <input type="text" class="form-group" id="year" aria-describedby="basic-addon1" name="year" style="width:230px">
+                            </div>
+                        </div>
+                        <p class="text-center" style="padding:0px"><button type="submit" class="btn btn-danger glyphicon glyphicon-search" role="search"></button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+
+
+
+    <!--Hall of Fames Members-->
+
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumOfYearsInClub)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumOfYearsInClub)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                </tr>
+            }
+        </table>
+</body>
+</html>
+
+

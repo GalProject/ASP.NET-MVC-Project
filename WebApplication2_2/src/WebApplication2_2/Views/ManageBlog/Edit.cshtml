@@ -1,0 +1,79 @@
+@model WebApplication2_2.Models.Post
+
+@{
+    ViewData["Title"] = "Edit";
+}
+        
+  <h2>Edit</h2>
+
+    <form asp-action="Edit">
+        <div class="form-horizontal">
+            <h4>Edit a Post</h4>
+            <hr />
+            <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="PostTitle" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PostTitle" class="form-control" />
+                    <span asp-validation-for="PostTitle" class="temodel.CommentPost.PostTitlext-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostWriterName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PostWriterName" class="form-control" style="margin-left:10px"/>
+                    <span asp-validation-for="PostWriterName" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostWriterURL" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PostWriterURL" class="form-control" type="url"/>
+                    <span asp-validation-for="PostWriterURL" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PostDate" class="form-control" />
+                    <span asp-validation-for="PostDate" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostContent" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PostContent" class="form-control" />
+                    <span asp-validation-for="PostContent" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostPicture" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PostPicture" class="form-control" />
+                    <span asp-validation-for="PostPicture" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostVideo" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PostVideo" class="form-control" />
+                    <span asp-validation-for="PostVideo" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }

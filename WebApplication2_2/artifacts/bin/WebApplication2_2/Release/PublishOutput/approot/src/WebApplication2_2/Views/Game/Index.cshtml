@@ -1,0 +1,74 @@
+﻿@model IEnumerable<WebApplication2_2.Models.Game>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<html>
+<body>
+    <h2 style="text-align:center">Games</h2>
+
+        <form asp-controller="Game" asp-action="Index3" method="post">
+            <div class="container" style="width:initial">
+                <div class="row" style="width:auto">
+                    <div class="col-lg-3 col-md-6 col-md-offset-3 col-lg-offset-0">
+                        <div class="well" style="width:300px; height:320px; padding-top:2px; margin-left:120px">
+                            <h3 align="center" style="padding:0px">Search Filter</h3>
+                            <!--FORM DELETED-->
+                            <div class="form-group" style="align-content:center">
+                                <label class="control-label" style="padding-right:95px; padding-top:0px">Genre</label>
+                                <select class="form-control" name="genre" id="genre">
+                                    <option value="Kids">Kids</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Action">Action</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Racing">Racing</option>
+                                    <option value="Music">Music</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" style="padding-right:70px; padding-top:0px">Availability</label>
+                                <select class="form-control" name="avl" id="avl">
+                                    <option value="InStock">In Stock</option>
+                                    <option value="Pre-Order">Pre-Order</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="padding-right:45px">
+                                <label for="pricefrom" class="control-label" style="padding-right:75px; padding-top:0px">Min Price</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="pricefrom" aria-describedby="basic-addon1" name="price" style="width:230px">
+                                    <div class="input-group-addon" id="basic-addon1">$</div>
+                                </div>
+                            </div>
+                            <p class="text-center" style="padding:0px"><button type="submit" class="btn btn-danger glyphicon glyphicon-search" role="search"></button></p>
+                            <!--FORM DELETED-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    <br>
+
+        <!--Pictues-->
+
+        @foreach (var item in Model)
+            {
+            <div class="item">
+                <a asp-action="Details" asp-route-id="@item.ID">
+                    <div class="box">
+                        <img src="~/images/Games/@item.GamePic" alt="gamepic" width="150" height="210">
+                        </div>
+                    </a>
+            </div>
+        }
+
+    
+        <br>
+        <br>
+
+</body>
+</html>
