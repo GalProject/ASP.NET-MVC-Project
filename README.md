@@ -2,9 +2,6 @@
 
 Check out the overview video: https://youtu.be/BNGYWmi6rFs
 
-
-![My image](http://i67.tinypic.com/25gv0jl.jpg)
-
 ![My image](http://imageshack.com/a/img924/3479/jUpTDS.png)
 
 
